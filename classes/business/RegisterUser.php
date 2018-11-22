@@ -32,7 +32,7 @@ class RegisterUser implements Business
                     "confirmed" => 1,
                     "mnethostid" => 1,
                     "username" => "",
-                    "password" => md5(get_config('auth_hnauth', 'password')),
+                    "password" => get_config('auth_hnauth', 'password'),
                     "idnumber" => "",
                     "firstname" => "",
                     "lastname" => "",
