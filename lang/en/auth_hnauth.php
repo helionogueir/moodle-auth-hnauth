@@ -13,3 +13,6 @@ $string['settings:credentials:publickey:description'] = 'Public Key JWT access';
 
 $string['settings:credentials:secretkey'] = "Secret Key";
 $string['settings:credentials:secretkey:description'] = 'Secret Key JWT access';
+
+$string['settings:credentials:password'] = "Default Password";
+$string['settings:credentials:password:description'] = 'Default Password for new users';

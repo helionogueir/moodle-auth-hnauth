@@ -9,7 +9,7 @@ use auth_hnauth\business\format\Timezone;
 use auth_hnauth\business\RegisterRoleAssign;
 use auth_hnauth\business\RegisterGroupAssign;
 
-require_once ($CFG->dirroot . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'lib.php');
+require_once($CFG->dirroot . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'lib.php');
 
 class RegisterUser implements Business
 {
@@ -25,14 +25,14 @@ class RegisterUser implements Business
             $username = null;
             if (!empty($data->user) && ($data->user instanceof stdClass) && !empty($data->user->username)) {
                 $secretkey = get_config('auth_hnauth', 'secretkey');
-                $row = Array(
+                $row = array(
                     "id" => 0,
                     "auth" => Constant::PLUGIN_TAG_NAME,
                     "deleted" => 0,
                     "confirmed" => 1,
                     "mnethostid" => 1,
                     "username" => "",
-                    "password" => md5($secretkey),
+                    "password" => md5(get_config('auth_hnauth', 'password')),
                     "idnumber" => "",
                     "firstname" => "",
                     "lastname" => "",
@@ -57,6 +57,7 @@ class RegisterUser implements Business
                 $row['lang'] = (new Lang())->format($row['lang']);
                 $row['timezone'] = (new Timezone())->format($row['timezone']);
                 if (!empty($row['id'])) {
+                    unset($row['password']);
                     user_update_user($row, false, false);
                 } else {
                     user_create_user($row);
@@ -71,9 +72,9 @@ class RegisterUser implements Business
         }
     }
 
-    private function matchValues(Array &$user, stdClass $data)
+    private function matchValues(array &$user, stdClass $data)
     {
-        $ignore = Array('id', 'auth', 'password', 'confirmed', 'mnethostid');
+        $ignore = array('id', 'auth', 'password', 'confirmed', 'mnethostid');
         foreach ($data as $key => $value) {
             if (!in_array($key, $ignore) && isset($user[$key])) {
                 $user[$key] = $value;
@@ -81,7 +82,7 @@ class RegisterUser implements Business
         }
     }
 
-    private function matchValuesExists(Array &$user, $username)
+    private function matchValuesExists(array &$user, $username)
     {
         global $DB;
         if ($userObject = $DB->get_record('user', array('username' => $username))) {
