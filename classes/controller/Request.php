@@ -33,9 +33,4 @@ class Request implements Controller
         }
     }
 
-    private function header()
-    {
-        
-    }
-
 }
