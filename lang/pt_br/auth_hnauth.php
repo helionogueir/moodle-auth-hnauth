@@ -12,7 +12,7 @@ $string['settings:credentials:publickey'] = "Chave Pública";
 $string['settings:credentials:publickey:description'] = 'Chave pública de acesso ao JWT';
 
 $string['settings:credentials:secretkey'] = "Chave Privada";
-$string['settings:credentials:secretkey:description'] = 'Chave private de acesso ao JWT';
+$string['settings:credentials:secretkey:description'] = 'Chave privada de acesso ao JWT';
 
 $string['settings:credentials:password'] = "Password Padrão";
-$string['settings:credentials:password:description'] = 'Password padrão para os noves usuários';
+$string['settings:credentials:password:description'] = 'Password padrão para os novos usuários';
